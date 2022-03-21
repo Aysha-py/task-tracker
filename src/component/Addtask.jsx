@@ -23,6 +23,9 @@ useEffect(()=>{
     const json =JSON.stringify(tasks)
     localStorage.setItem("tasks",json)
 },[tasks])
+
+
+  
     
 
  return (

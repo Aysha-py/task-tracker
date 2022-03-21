@@ -20,22 +20,9 @@ export const App = () => {
         date: '12th of january 2022',
         reminder:true
     },
-
-    {
-        id:3,
-        Text: 'Food Shopping',
-        date: '12th of january 2022',
-        reminder:true
-    }
 ])
-useEffect(()=>{
-  const json =localStorage.getItem("tasks")
-  const savedTask = JSON.parse(json)
-  if (savedTask){
-      setTask(savedTask)
-  }
+console.log(tasks)
 
-},[])
 
 
 const deleteTask = (id) =>{
@@ -55,13 +42,21 @@ const addTask =(tasko)=>{
 
   const newTask = { id, ...tasko }
   setTask([...tasks, newTask])
-  console.log(newTask)
+
 }
+
+useEffect(()=>{
+  const tas =localStorage.getItem("tasks")
+  const savedTask = JSON.parse(tas)
+  if (savedTask){
+      setTask(savedTask)
+  }
+},[])
  
   return (
     <div className='container'>
       <Header   title="Task Tracker" onAdd={()=>setShow(!show)} showAdd={show}/>
-     {show && <Addtask onAdd={addTask} tasks={tasks} />} 
+     {show && <Addtask onAdd={addTask} tasks={tasks}/>} 
       {tasks.length > 0 ? <Task tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : "No Task Available"}
       
     </div>
